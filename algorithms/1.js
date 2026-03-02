@@ -20,13 +20,38 @@
 
 */
 
+/*
+    문제 풀이 방식 설명
+    1. 스택을 사용하면 문제를 쉽게 해결할 수 있을거라 생각하여 스택을 사용하여 문제를 해결했습니다.
+    2. bracketMap을 사용하여 여는 괄호와 닫는 괄호를 매핑하여 문제를 해결했습니다.
+
+*/
 function solution(s) {
-    
+
+    const stack = [];
+    const bracketMap = {
+        '(': ')',
+        '{': '}',
+        '[': ']'
+    };
+
+    for (const char of s) {
+        if (bracketMap[char]) {
+            stack.push(char);
+        } else {
+            const last = stack.pop();
+            if (bracketMap[last] !== char) {
+                return false;
+            }
+        }
+    }
+
+    return stack.length === 0;
 }
 
 
-solution("()")        // true
-solution("()[]{}")    // true
-solution("(]")        // false
-solution("([)]")      // false
-solution("{[]}")      // true
+console.log(solution("()"))        // true
+console.log(solution("()[]{}"))    // true
+console.log(solution("(]"))        // false
+console.log(solution("([)]"))      // false
+console.log(solution("{[]}"))      // true
