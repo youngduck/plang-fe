@@ -12,9 +12,17 @@
 
 */
 
+/*
+    문제 풀이 방식 설명
+    1. Set을 사용하여 문제를 해결했습니다.
+    2. javascript집합 연산자를 검색하여 교집합을 구하는 intersection을 발견하여 간단하게 문제를 해결했습니다.
+*/
+
 function solution(nums1, nums2) {
-  return nums1.filter(num => nums2.includes(num));
+    const set1 = new Set(nums1);
+    const set2 = new Set(nums2);
+    return Array.from(set1.intersection(set2));
 }
 
-solution([1,2,2,1], [2,2])      // [2]
-solution([4,9,5], [9,4,9,8,4])  // [4,9]
+console.log(solution([1,2,2,1], [2,2]))        // [2]
+console.log(solution([4,9,5], [9,4,9,8,4]))    // [4,9]
